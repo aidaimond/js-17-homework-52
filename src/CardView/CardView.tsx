@@ -8,28 +8,28 @@ interface CardProps {
 const CardView: React.FC<CardProps> = props => {
   let symbol = '';
   switch (props.suit) {
-    case 'diams':
-      symbol = '♦';
+    case '♦':
+      symbol = 'diams';
       break;
-    case 'hearts':
-      symbol = '♥';
+    case '♥':
+      symbol = 'hearts';
       break;
-    case 'clubs':
-      symbol = '♣';
+    case '♣':
+      symbol = 'clubs';
       break;
-    case 'spades':
-      symbol = '♠';
+    case '♠':
+      symbol = 'spades';
       break;
     default:
       console.log('this is not symbol, look for mistake')
   }
 
-  const cardClass = 'card rank-' + 'k' + ' ' + props.suit;
+  const cardClass = 'card rank-' + props.rank.toLowerCase() + ' ' + symbol;
 
   return (
     <span className={cardClass}>
       <span className="rank">{props.rank}</span>
-      <span className="suit">{symbol}</span>
+      <span className="suit">{props.suit}</span>
     </span>
   );
 };
