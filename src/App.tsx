@@ -1,7 +1,10 @@
-import React, {ReactComponentElement, useState} from 'react';
+import React, {useState} from 'react';
 import CardView from "./CardView/CardView";
 import CardDeck from "./lib/CardDeck";
 import Card from "./lib/Card";
+import PokerHand from "./lib/PokerHand";
+
+let combo = '';
 
 function App() {
   const [randomCards, setRandomCards] = useState<Card[]>([]);
@@ -9,7 +12,10 @@ function App() {
   const cardDeck = new CardDeck();
 
   const changeState = () => {
-    setRandomCards(cardDeck.getCards(5));
+    const arr = cardDeck.getCards(5)
+    setRandomCards(arr);
+    const hand = new PokerHand(arr);
+    combo = hand.getOutCome();
   };
 
   const button = <button className="button" onClick={changeState}>Deal Cards</button>
@@ -30,12 +36,15 @@ function App() {
       </div>
 
       <div className="playingCards faceImages">
-        <CardView rank={randomCards[0].rank} suit={randomCards[0].suit}/>
-        <CardView rank={randomCards[1].rank} suit={randomCards[1].suit}/>
-        <CardView rank={randomCards[2].rank} suit={randomCards[2].suit}/>
-        <CardView rank={randomCards[3].rank} suit={randomCards[3].suit}/>
-        <CardView rank={randomCards[4].rank} suit={randomCards[4].suit}/>
-
+        <div className="combo">{combo}</div>
+        <div>
+          {randomCards.map((card:Card, i) => {
+            return (
+              <CardView key={i} rank={card.rank} suit={card.suit}/>
+            )
+          })
+          }
+        </div>
       </div>
     </div>
   );

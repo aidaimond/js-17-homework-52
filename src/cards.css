@@ -10,12 +10,29 @@
 /* card itself
 ********************************************************************/
 
+#root{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .button{
   margin: 10px;
   padding: 8px 15px;
   background-color: greenyellow;
   border-radius: 5px;
 
+}
+
+.combo {
+  border: 1px solid black;
+  margin: 20px;
+  border-radius: 2px;
+  background-color: lightblue;
+  font-size: 17px;
+  padding: 4px 0;
+  opacity: 0.9;
 }
 
 .playingCards .card {
